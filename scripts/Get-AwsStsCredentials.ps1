@@ -168,7 +168,6 @@ $myPrincipalArn = $($myUserRole -split ",")[1]
 $myRoleArn = $($myUserRole -split ",")[0]
 $myDurationSeconds = $($aadSamlContentXml.Response.Assertion.AttributeStatement.Attribute | Where-Object -Property "Name" -EQ "https://aws.amazon.com/SAML/Attributes/SessionDuration" | Select-Object AttributeValue).AttributeValue
 $mySamlAssertion = $aadSamlResponse 
-$myDurationSeconds=3600
 
 # Generate the AWS STS REST API URL and query - specific region for the API call can be input as parameter.
 $awsStsApiEndpointUrl = "https://sts.$(if($OverrideAWSRegion){"$OverrideAWSRegion."})amazonaws.com/"
