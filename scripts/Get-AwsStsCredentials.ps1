@@ -19,7 +19,7 @@
   Version:        0.1.0
   Author:         Dominic P.
   Creation Date:  16/06/2019
-  Purpose/Change: Initial script development
+  Purpose/Change: Initial script development.
   
 .EXAMPLE
     Get-AwsSTSCreds -URL https://myssoapps.myidp.com/?appid=someappid_etc -OverrideAWSRegion "ap-southeast-2"
@@ -42,7 +42,6 @@ param(
 #-----------------------------------------------------------[Functions]------------------------------------------------------------
 
 # TODO: Convert to functions at some stage - its a bit monolithic eh.
-
 
 #-----------------------------------------------------------[Execution]------------------------------------------------------------
 

@@ -21,7 +21,7 @@
   Version:        0.1.0
   Author:         Dominic P.
   Creation Date:  16/06/2019
-  Purpose/Change: Initial script development
+  Purpose/Change: Initial script development.
   
 .EXAMPLE
     Update-AwsCredentials -InputFile <path> -OutputFile <path> -OutputFormat [Text/Json] -BackupFirst -ConsoleOnly
