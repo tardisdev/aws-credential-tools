@@ -182,7 +182,7 @@ $myAwsStsApiQueryUrl = "?Version=2011-06-15"+`
 try {
     $myStsApiResponse = $(Invoke-RestMethod ($awsStsApiEndpointUrl + $myAwsStsApiQueryUrl) -ErrorVariable irmErr).AssumeRoleWithSAMLResponse.AssumeRoleWithSAMLResult.Credentials
 } catch  {
-    Write-Error "Error in STS rest call - exiting.`nResponse:`n $($irmErr.Message)"
+    Write-Host -ForegroundColor Red "Error in STS rest call - exiting.`nRest Response:`n $($irmErr.Message)"
     return
 }
 
