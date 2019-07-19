@@ -173,16 +173,16 @@ $mySamlAssertion = $aadSamlResponse
 $awsStsApiEndpointUrl = "https://sts.$(if($OverrideAWSRegion){"$OverrideAWSRegion."})amazonaws.com/"
 $myAwsStsApiQueryUrl = "?Version=2011-06-15"+`
             "&Action=AssumeRoleWithSAML"+`
-            "&DurationSeconds=$myDurationSeconds" +`
+            "&DurationSeconds=18000" +` # "&DurationSeconds=$myDurationSeconds" +`
             "&PrincipalArn=$([uri]::EscapeDataString($myPrincipalArn))" +`
             "&RoleArn=$([uri]::EscapeDataString($myRoleArn))"+`
             "&SAMLAssertion=$([uri]::EscapeDataString($mySamlAssertion))"
 
 # Make the AWS STS REST API call and return the response.
 try {
-    $myStsApiResponse = $(Invoke-RestMethod ($awsStsApiEndpointUrl + $myAwsStsApiQueryUrl)).AssumeRoleWithSAMLResponse.AssumeRoleWithSAMLResult.Credentials
+    $myStsApiResponse = $(Invoke-RestMethod ($awsStsApiEndpointUrl + $myAwsStsApiQueryUrl) -ErrorVariable irmErr).AssumeRoleWithSAMLResponse.AssumeRoleWithSAMLResult.Credentials
 } catch  {
-    Write-Error "Error in STS rest call - exiting."
+    Write-Error "Error in STS rest call - exiting.`nResponse:`n $($irmErr.Message)"
     return
 }
 
