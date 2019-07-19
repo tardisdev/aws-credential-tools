@@ -180,7 +180,7 @@ ForEach ($awsProfile in $awsProfileMetadata.Keys) {
             $awsProfileMetadata.$awsProfile.$keyAwsSectretAccessKey.$keyNewValue= $myAwsStsCreds.SecretAccessKey
             $awsProfileMetadata.$awsProfile.$keyAwsCredsExpiry.$keyNewValue = [datetime]::SpecifyKind($myAwsStsCreds.Expiration,"UTC").ToString($outputTimeFormat)
         } catch {
-            Write-Error "Error in STS response for $awsProfile - this profile may not work correctly. Continuing to next profile..."
+            Write-Host -ForegroundColor Red "Error in STS response for $awsProfile - this profile may not work correctly. Continuing to next profile..."
         }
     }
 
@@ -200,7 +200,7 @@ ForEach ($awsProfile in $awsProfileMetadata.Keys) {
         }
     }
     
-    Write-Host "Successfully obtained AWS credentials for $awsProfile."
+    Write-Host "Completed processing AWS credentials for [$awsProfile]."
  
 }
 
@@ -240,7 +240,7 @@ else {
         # Write contents to output file.
         # TODO: If input file name and output file name match, and the output format is not text then prompt the user to ensure thats what they want, give them a chance to specify different destination here.
         Set-Content -Path $OutputFile -Value "# SCRIPTED UPDATE # This file has been automatically modifed by Update-AWSCredentials script: $(Get-Date -Format $OutputTimeFormat)",$outFileContent
-        Write-Host "Successfully written new AWS credentials to destination file."
+        Write-Host "Successfully completed processing AWS credentials file."
     } catch {
         Write-Error "Error writing to $OutputFile - exiting."
         return
