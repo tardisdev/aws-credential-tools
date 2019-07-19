@@ -173,7 +173,7 @@ $mySamlAssertion = $aadSamlResponse
 $awsStsApiEndpointUrl = "https://sts.$(if($OverrideAWSRegion){"$OverrideAWSRegion."})amazonaws.com/"
 $myAwsStsApiQueryUrl = "?Version=2011-06-15"+`
             "&Action=AssumeRoleWithSAML"+`
-            "&DurationSeconds=18000" +` # "&DurationSeconds=$myDurationSeconds" +`
+            "&DurationSeconds=$myDurationSeconds" +`
             "&PrincipalArn=$([uri]::EscapeDataString($myPrincipalArn))" +`
             "&RoleArn=$([uri]::EscapeDataString($myRoleArn))"+`
             "&SAMLAssertion=$([uri]::EscapeDataString($mySamlAssertion))"
